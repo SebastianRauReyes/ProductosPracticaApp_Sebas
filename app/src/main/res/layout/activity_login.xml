@@ -17,16 +17,17 @@
     <LinearLayout
         android:id="@+id/login_panel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:padding="32dp"
+        android:background="@color/primary_light">
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/img_product_hunt" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:drawableStart="@mipmap/ic_username_color"
                     android:id="@+id/username_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,6 +55,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:drawableStart="@mipmap/ic_password_color"
                     android:id="@+id/password_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -68,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text="Login"
                 android:textStyle="bold"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/button_custom_1"
                 android:textColor="@android:color/white"
                 android:onClick="callLogin"/>
 
@@ -78,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
                 android:textStyle="bold"
-                android:background="@color/colorAccent"
+                android:background="@drawable/button_custom_2"
                 android:textColor="@android:color/white"
                 android:onClick="callSingup"/>
 

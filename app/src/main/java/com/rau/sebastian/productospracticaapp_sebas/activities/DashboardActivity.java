@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rau.sebastian.productospracticaapp_sebas.R;
+import com.rau.sebastian.productospracticaapp_sebas.adapters.ProductAdapter;
+import com.rau.sebastian.productospracticaapp_sebas.models.Product;
 import com.rau.sebastian.productospracticaapp_sebas.models.User;
+import com.rau.sebastian.productospracticaapp_sebas.repositories.ProductRepository;
 import com.rau.sebastian.productospracticaapp_sebas.repositories.UserRepository;
+
+import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -27,6 +34,9 @@ public class DashboardActivity extends AppCompatActivity {
     // SharedPreferences
     private SharedPreferences sharedPreferences;
     private TextView usernameText;
+
+    // RecyclerView
+    private RecyclerView productsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +52,15 @@ public class DashboardActivity extends AppCompatActivity {
         String username = sharedPreferences.getString("username", null);
         Log.d(TAG, "username: " + username);
 
-
+        //Get Parameters from Current USER
         User user = UserRepository.getUser(username);
-        usernameText.setText(user.getFullname());
+        assert user != null;
+        String name = "  "+user.getFullname();
+        usernameText.setText(name);
 
 
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -57,10 +69,10 @@ public class DashboardActivity extends AppCompatActivity {
                         Toast.makeText(DashboardActivity.this, "Go home section...", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_camera:
-                        Toast.makeText(DashboardActivity.this, "Go camera section...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DashboardActivity.this, "Go favorite section...", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.menu_search:
-                        Toast.makeText(DashboardActivity.this, "Go share section...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DashboardActivity.this, "Go archived section...", Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -68,12 +80,32 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+        // Configure ReciclerView
+        productsList = findViewById(R.id.product_list);
+        productsList.setLayoutManager(new LinearLayoutManager(this));
+
+        // Set Data Adapter to ReciclerView
+        List<Product> products= ProductRepository.list();
+        productsList.setAdapter(new ProductAdapter(products));
+
+    }
+
+    // return from RegisterActivity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // refresh data
+        ProductAdapter adapter = (ProductAdapter)productsList.getAdapter();
+        List<Product> products = ProductRepository.list();
+        adapter.setProducts(products);
+        adapter.notifyDataSetChanged();
+
     }
 
     
     public void callLogout(){
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("islogged").commit();
+        editor.remove("islogged").apply();
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
@@ -88,12 +120,25 @@ public class DashboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.action_about:
+            case R.id.action_logout:
                 callLogout();
+                return true;
+            case R.id.action_add:
+                registerProduct();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void registerProduct(){
+        startActivity(new Intent(this, RegisterProductActivity.class));
+
+    }
+
+
+
+
 
 
 }

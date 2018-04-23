@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if(username.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "You must complete these fields", Toast.LENGTH_SHORT).show();
-            return;
         }
 
         // Login logic

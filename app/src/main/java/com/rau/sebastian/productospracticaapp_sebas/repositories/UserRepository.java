@@ -1,5 +1,7 @@
 package com.rau.sebastian.productospracticaapp_sebas.repositories;
 
+import android.support.annotation.Nullable;
+
 import com.orm.SugarRecord;
 import com.rau.sebastian.productospracticaapp_sebas.models.User;
 
@@ -18,6 +20,9 @@ public class UserRepository {
         SugarRecord.save(user);
     }
 
+    //------------------------------------------------------------------------------------------------------------
+    // Login User
+    @Nullable
     public static User login(String username, String password){
         List<User> users = SugarRecord.listAll(User.class);
         for (User user : users){
@@ -28,6 +33,7 @@ public class UserRepository {
         return null;
     }
 
+    @Nullable
     public static User getUser(String username){
         List<User> users = SugarRecord.listAll(User.class);
         for (User user : users){
