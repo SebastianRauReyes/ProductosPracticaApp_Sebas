@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.rau.sebastian.productospracticaapp_sebas.R;
 import com.rau.sebastian.productospracticaapp_sebas.adapters.ProductAdapter;
+import com.rau.sebastian.productospracticaapp_sebas.fragments.FragmentHomeActivity;
 import com.rau.sebastian.productospracticaapp_sebas.models.Product;
 import com.rau.sebastian.productospracticaapp_sebas.models.User;
 import com.rau.sebastian.productospracticaapp_sebas.repositories.ProductRepository;
@@ -67,12 +68,23 @@ public class DashboardActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.menu_home:
                         Toast.makeText(DashboardActivity.this, "Go home section...", Toast.LENGTH_SHORT).show();
+
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        // Create FirstFragment
+                        Fragment fragment = new FragmentHomeActivity();
+                        // Replace content
+                        fragmentManager.beginTransaction().replace(R.id.relativeLayout1, fragment).addToBackStack("tag").commit();
+
                         break;
                     case R.id.menu_camera:
                         Toast.makeText(DashboardActivity.this, "Go favorite section...", Toast.LENGTH_SHORT).show();
+
+
                         break;
                     case R.id.menu_search:
                         Toast.makeText(DashboardActivity.this, "Go archived section...", Toast.LENGTH_SHORT).show();
+
+
                         break;
 
                 }
@@ -80,13 +92,13 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        // Configure ReciclerView
+        /*// Configure ReciclerView
         productsList = findViewById(R.id.product_list);
         productsList.setLayoutManager(new LinearLayoutManager(this));
 
         // Set Data Adapter to ReciclerView
         List<Product> products= ProductRepository.list();
-        productsList.setAdapter(new ProductAdapter(products));
+        productsList.setAdapter(new ProductAdapter(products));*/
 
     }
 

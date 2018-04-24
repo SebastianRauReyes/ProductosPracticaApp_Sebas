@@ -23,7 +23,7 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.rau.sebastian.productospracticaapp_sebas.models" />
 
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme2">
@@ -33,9 +33,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RegisterActivity" android:label="@string/app_name_user" />
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:label="@string/app_name_user" />
         <activity android:name=".activities.DashboardActivity" />
-        <activity android:name=".activities.RegisterProductActivity" android:label="@string/app_name_product"/>
+        <activity
+            android:name=".activities.RegisterProductActivity"
+            android:label="@string/app_name_product" />
+        <activity android:name=".fragments.FragmentFavoritesActivity" />
+        <activity android:name=".fragments.FragmentArchivedActivity" />
+        <activity android:name=".fragments.FragmentHomeActivity"></activity>
     </application>
 
 </manifest>
