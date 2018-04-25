@@ -13,6 +13,15 @@ public class ProductRepository {
         return products;
     }
 
+    public static List<Product> listFavorite(){
+        List<Product> products = SugarRecord.find(Product.class, "procuctstate = ?","FAV");
+        return products;
+    }
+    public static List<Product> listArchived(){
+        List<Product> products = SugarRecord.find(Product.class, "procuctstate = ?","ARCH");
+        return products;
+    }
+
 
 
     public static Product read(Long id){
@@ -27,13 +36,9 @@ public class ProductRepository {
     }
 
 
-    public static void update(String productname, String productprice, String productdesc, String procuctstate, Long id_user, Long id){
+    public static void updateState(String procuctstate, Long id){
         Product product= SugarRecord.findById(Product.class, id);
-        product.setProductname(productname);
-        product.setProductprice(productprice);
-        product.setProductdesc(productdesc);
         product.setProcuctstate(procuctstate);
-        product.setId_user(id_user);
         SugarRecord.save(product);
     }
 

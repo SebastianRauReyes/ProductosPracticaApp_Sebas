@@ -7,12 +7,12 @@
         android:icon="@mipmap/ic_home_color" />
 
     <item
-        android:id="@+id/menu_camera"
+        android:id="@+id/menu_favorite"
         android:title="Favorites"
         android:icon="@mipmap/ic_star_color" />
 
     <item
-        android:id="@+id/menu_search"
+        android:id="@+id/menu_archived"
         android:title="Archived"
         android:icon="@mipmap/ic_trash_color"
         />

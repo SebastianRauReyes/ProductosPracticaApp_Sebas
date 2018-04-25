@@ -1,6 +1,5 @@
 package com.rau.sebastian.productospracticaapp_sebas.adapters;
 
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,12 +8,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.rau.sebastian.productospracticaapp_sebas.R;
 import com.rau.sebastian.productospracticaapp_sebas.activities.DashboardActivity;
 import com.rau.sebastian.productospracticaapp_sebas.models.Product;
+import com.rau.sebastian.productospracticaapp_sebas.repositories.ProductRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
@@ -63,7 +63,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ProductAdapter.ViewHolder holder, final int position) {
+
         final Product product = this.products.get(position);
+
         holder.productname.setText(product.getProductname());
         String price = "$ "+product.getProductprice();
         holder.productprice.setText(price);
@@ -73,14 +75,31 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.favoriteButton.getContext(), product.getProductname() +" Added to Favorites", Toast.LENGTH_SHORT).show();
+
+                if(Objects.equals(product.getProcuctstate(), "FAV")){
+                    Toast.makeText(holder.favoriteButton.getContext(), product.getProductname() +" Removed from Favorites", Toast.LENGTH_SHORT).show();
+                    ProductRepository.updateState("", product.getId());
+
+                }else {
+                    Toast.makeText(holder.favoriteButton.getContext(), product.getProductname() +" Added to Favorites", Toast.LENGTH_SHORT).show();
+                    ProductRepository.updateState("FAV", product.getId());
+                }
+
             }
+
         });
 
         holder.trashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(holder.trashButton.getContext(), product.getProductname() +" Archived", Toast.LENGTH_SHORT).show();
+
+                if(Objects.equals(product.getProcuctstate(), "ARCH")){
+                    Toast.makeText(holder.trashButton.getContext(), product.getProductname() +" Removed from Archived", Toast.LENGTH_SHORT).show();
+                    ProductRepository.updateState("", product.getId());
+                }else {
+                    Toast.makeText(holder.trashButton.getContext(), product.getProductname() +" Archived", Toast.LENGTH_SHORT).show();
+                    ProductRepository.updateState("ARCH", product.getId());
+                }
             }
         });
 
