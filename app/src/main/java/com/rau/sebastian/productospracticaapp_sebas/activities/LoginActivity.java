@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "Welcome " + user.getFullname(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Welcome " + user.getFullname(), Toast.LENGTH_SHORT).show();
 
         // Save to SharedPreferences
         SharedPreferences.Editor editor = sharedPreferences.edit();

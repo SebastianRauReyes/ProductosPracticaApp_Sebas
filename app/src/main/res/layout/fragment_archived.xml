@@ -5,11 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.FragmentArchivedActivity"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="15dp">
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="15dp"
+    android:background="#F8E0E0">
+
+    <TextView
+        android:id="@+id/textView_ARCH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#B40404"
+        android:layout_marginBottom="15dp"
+        android:text="Products Archived"/>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/textView_ARCH"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/product_list_arch"/>

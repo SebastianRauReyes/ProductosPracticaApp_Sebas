@@ -55,14 +55,14 @@ public class FragmentFavoritesActivity extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.d(TAG, "onCreateView");
-        
+        Log.d(TAG, "onAttach");
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------------
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.d(TAG, "onCreateView");
+        Log.d(TAG, "onDetach");
     }
 }

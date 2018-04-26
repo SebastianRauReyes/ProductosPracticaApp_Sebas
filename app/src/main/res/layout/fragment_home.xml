@@ -9,7 +9,18 @@
     android:paddingTop="15dp"
     tools:context=".fragments.FragmentHomeActivity">
 
+    <TextView
+        android:id="@+id/textView_HOME"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@color/primary_dark"
+        android:layout_marginBottom="15dp"
+        android:text="All Products"/>
+
+
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/textView_HOME"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/product_list"/>

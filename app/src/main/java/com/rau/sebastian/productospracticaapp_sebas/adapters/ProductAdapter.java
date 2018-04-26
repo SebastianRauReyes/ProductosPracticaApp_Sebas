@@ -83,6 +83,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 }else {
                     Toast.makeText(holder.favoriteButton.getContext(), product.getProductname() +" Added to Favorites", Toast.LENGTH_SHORT).show();
                     ProductRepository.updateState("FAV", product.getId());
+
                 }
 
             }

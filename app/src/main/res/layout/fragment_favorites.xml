@@ -8,9 +8,20 @@
     tools:context=".fragments.FragmentFavoritesActivity"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:paddingTop="15dp">
+    android:paddingTop="15dp"
+    android:background="#F5F6CE">
+
+    <TextView
+        android:id="@+id/textView_FAV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="#868A08"
+        android:layout_marginBottom="15dp"
+        android:text="Favorites Products"/>
 
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/textView_FAV"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/product_list_fav"/>

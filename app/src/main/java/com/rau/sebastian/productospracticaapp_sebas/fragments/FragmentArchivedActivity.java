@@ -44,8 +44,6 @@ public class FragmentArchivedActivity extends Fragment {
         // Set Data Adapter to ReciclerView
         List<Product> products= ProductRepository.listArchived();
         productsList.setAdapter(new ProductAdapter(products));
-
-
         return view;
 
 
@@ -56,6 +54,8 @@ public class FragmentArchivedActivity extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         Log.d(TAG, "onCreateView");
+
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------------

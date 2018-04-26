@@ -51,7 +51,7 @@ public class RegisterProductActivity extends AppCompatActivity {
         String productname = productnameInput.getText().toString();
         String productprice = productpriceInput.getText().toString();
         String productdesc = productdescInput.getText().toString();
-        String productstate = "FAV";
+        String productstate = "F";
         Long id_user = user.getId();
 
 

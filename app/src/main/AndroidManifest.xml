@@ -23,7 +23,6 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.rau.sebastian.productospracticaapp_sebas.models" />
 
-        <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme2">

@@ -1,6 +1,5 @@
 package com.rau.sebastian.productospracticaapp_sebas.activities;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -15,7 +14,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.rau.sebastian.productospracticaapp_sebas.R;
 import com.rau.sebastian.productospracticaapp_sebas.adapters.ProductAdapter;
 import com.rau.sebastian.productospracticaapp_sebas.fragments.FragmentArchivedActivity;
@@ -29,11 +27,16 @@ import com.rau.sebastian.productospracticaapp_sebas.repositories.UserRepository;
 import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity {
+
+    //Variables
+    private TextView usernameText;
+
     //TAG
     private static final String TAG = DashboardActivity.class.getSimpleName();
+
     // SharedPreferences
     private SharedPreferences sharedPreferences;
-    private TextView usernameText;
+
     // RecyclerView
     private RecyclerView productsList;
 
@@ -44,6 +47,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         usernameText = findViewById(R.id.fullname_text);
 
+        // SharedPreferences --------------------------------------------------------------------------------------------
         // init SharedPreferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -58,7 +62,7 @@ public class DashboardActivity extends AppCompatActivity {
         usernameText.setText(name);
 
 
-
+        // Fragments --------------------------------------------------------------------------------------------
         final FragmentManager fragmentManager = getSupportFragmentManager();
         final Fragment fragmentHome = new FragmentHomeActivity();
         fragmentManager.beginTransaction().replace(R.id.relativeLayoutContend, fragmentHome).addToBackStack("tag").commit();
@@ -68,43 +72,35 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-
-
                 switch (item.getItemId()) {
                     case R.id.menu_home:
                         onOptionsItemSelected(item);
-                        Toast.makeText(DashboardActivity.this, "Go home section...", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(DashboardActivity.this, "Go home section...", Toast.LENGTH_SHORT).show();
                         fragmentManager.beginTransaction().replace(R.id.relativeLayoutContend, fragmentHome).addToBackStack("tag").commit();
-
                         break;
-                    case R.id.menu_favorite:
-                        Toast.makeText(DashboardActivity.this, "Go favorite section...", Toast.LENGTH_SHORT).show();
 
+                    case R.id.menu_favorite:
+                        //Toast.makeText(DashboardActivity.this, "Go favorite section...", Toast.LENGTH_SHORT).show();
                         // Create FirstFragment
                         Fragment fragmentFavorite = new FragmentFavoritesActivity();
                         // Replace content
                         fragmentManager.beginTransaction().replace(R.id.relativeLayoutContend, fragmentFavorite).addToBackStack("tag").commit();
-
-
                         break;
+
                     case R.id.menu_archived:
-                        Toast.makeText(DashboardActivity.this, "Go archived section...", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(DashboardActivity.this, "Go archived section...", Toast.LENGTH_SHORT).show();
                         // Create FirstFragment
                         Fragment fragmentArchived = new FragmentArchivedActivity();
                         // Replace content
                         fragmentManager.beginTransaction().replace(R.id.relativeLayoutContend, fragmentArchived ).addToBackStack("tag").commit();
-
                         break;
-
                 }
                 return true;
             }
         });
-
     }
 
-    // return from RegisterActivity
+    // return from RegisterActivity -------------------------------------------------------------------------------------------------------------
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -148,10 +144,5 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterProductActivity.class));
 
     }
-
-
-
-
-
 
 }
