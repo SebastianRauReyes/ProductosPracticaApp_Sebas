@@ -9,7 +9,7 @@ public class ProductRepository {
 
 
     public static List<Product> list(){
-        List<Product> products = SugarRecord.listAll(Product.class);
+        List<Product> products = SugarRecord.find(Product.class, "procuctstate NOT IN (?)","ARCH");
         return products;
     }
 
@@ -23,18 +23,10 @@ public class ProductRepository {
     }
 
 
-
-    public static Product read(Long id){
-        Product product = SugarRecord.findById(Product.class, id);
-        return product;
-    }
-
-
     public static void create(String productname, String productprice, String productdesc, String procuctstate, Long id_user){
         Product product = new Product(productname, productprice,  productdesc, procuctstate, id_user);
         SugarRecord.save(product);
     }
-
 
     public static void updateState(String procuctstate, Long id){
         Product product= SugarRecord.findById(Product.class, id);
@@ -42,9 +34,13 @@ public class ProductRepository {
         SugarRecord.save(product);
     }
 
-    public static void delete(Long id){
+    /*public static void delete(Long id){
         Product product = SugarRecord.findById(Product.class, id);
         SugarRecord.delete(product);
-    }
+    }*/
 
+    /*public static Product read(Long id){
+        Product product = SugarRecord.findById(Product.class, id);
+        return product;
+    }*/
 }

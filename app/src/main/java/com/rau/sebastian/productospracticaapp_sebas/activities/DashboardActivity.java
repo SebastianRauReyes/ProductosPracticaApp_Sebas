@@ -74,7 +74,6 @@ public class DashboardActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.menu_home:
-                        onOptionsItemSelected(item);
                         //Toast.makeText(DashboardActivity.this, "Go home section...", Toast.LENGTH_SHORT).show();
                         fragmentManager.beginTransaction().replace(R.id.relativeLayoutContend, fragmentHome).addToBackStack("tag").commit();
                         break;
