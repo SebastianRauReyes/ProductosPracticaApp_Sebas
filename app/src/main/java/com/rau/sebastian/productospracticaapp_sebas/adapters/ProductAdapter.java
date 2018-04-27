@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.rau.sebastian.productospracticaapp_sebas.R;
 import com.rau.sebastian.productospracticaapp_sebas.activities.DashboardActivity;
+import com.rau.sebastian.productospracticaapp_sebas.fragments.ChangesNotifier;
 import com.rau.sebastian.productospracticaapp_sebas.models.Product;
 import com.rau.sebastian.productospracticaapp_sebas.repositories.ProductRepository;
 
@@ -22,8 +23,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     private List<Product> products;
 
-    public ProductAdapter(List<Product> products){
+    //Changes
+    private ChangesNotifier changesNotifier;
 
+    public ProductAdapter(ChangesNotifier changesNotifier, List<Product> products){
+        this.changesNotifier = changesNotifier;
         this.products = products;
     }
 
@@ -85,6 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     ProductRepository.updateState("FAV", product.getId());
 
                 }
+                changesNotifier.notifyChanges();
 
             }
 
@@ -101,10 +106,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     Toast.makeText(holder.trashButton.getContext(), product.getProductname() +" Archived", Toast.LENGTH_SHORT).show();
                     ProductRepository.updateState("ARCH", product.getId());
                 }
+                changesNotifier.notifyChanges();
             }
         });
-
-
 
 
     }
